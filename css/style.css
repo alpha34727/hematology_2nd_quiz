@@ -358,17 +358,6 @@ a.xl:hover{text-decoration-color:var(--ink)}
   .fq p{font-size:16px}
   .ft td a.xl{padding:2px 0}
   .ft td:first-child a.xl{display:inline-block;padding:6px 0}
-  /* 表格 → 卡片：不再需要左右捲動來讀 */
-  .ft:not(.mx),.ft:not(.mx) tbody{display:block}
-  .ft:not(.mx) thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-  .ft:not(.mx) tr{display:block;padding:12px 0 10px;border-bottom:1px solid var(--line)}
-  .ft:not(.mx) tr:last-child{border-bottom:none}
-  .ft:not(.mx) td{display:block;position:relative;border:0;padding:3px 0 3px 5.6em;min-width:0;font-size:14.5px;line-height:1.65}
-  .ft:not(.mx) td:first-child{padding:0 0 4px;font:600 16px/1.45 var(--serif)}
-  .ft:not(.mx) td:first-child::before{display:none}
-  .ft:not(.mx) td::before{content:attr(data-label);position:absolute;left:0;top:5px;width:5em;font:700 12px/1.5 var(--sans);letter-spacing:.04em;color:var(--muted)}
-  .ft:not(.mx) td.nil{display:none}
-  .ft:not(.mx) td.fsm{white-space:normal}
   /* 矩陣表保留表格，鎖定第一欄 */
   .ft.mx{min-width:680px;table-layout:auto}
   .ft.mx td,.ft.mx th{padding-left:8px;padding-right:8px}
@@ -387,8 +376,6 @@ table.ft{font-size:14px;line-height:1.7}
 
 /* 手機／平板：卡片標籤不換行、章節 chip 隱藏捲軸 */
 @media (max-width:820px){
-  .ft:not(.mx) td{padding-left:6.6em}
-  .ft:not(.mx) td::before{width:6em;white-space:nowrap}
   .fnl{scrollbar-width:none}
   .fnl::-webkit-scrollbar{display:none}
 }
@@ -407,3 +394,64 @@ table.ft{font-size:14px;line-height:1.7}
 
 /* 縮寫下方的灰色全名 */
 small.sub{display:block;font:400 12.5px/1.4 var(--sans);color:var(--muted);margin-top:2px;letter-spacing:0}
+
+.fprint{display:block;margin:0 0 12px;width:100%}
+@media (max-width:820px){ .fprint{margin:4px 0 8px} }
+
+/* ---------- 列印／存成 PDF ---------- */
+/* @page 不能放在 @media 裡，否則會被忽略（這就是之前沒有邊界的原因） */
+@page{size:A4;margin:16mm 14mm 18mm}
+@media print{
+  :root,:root[data-theme="dark"],:root[data-theme="light"]{--bg:#FAF8F3!important;--surface:#FFFEFB!important;--ink:#1C1B19!important;--muted:#6B655C!important;--line:#E2DCCF!important;--hover:#F1EDE3!important;--hl:#fff0b3!important;--hl2:#ffe27a!important;--exline:#d9a400!important;--xq:#1b7f3b!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{height:auto!important;background:#FAF8F3!important}
+  body{font-size:10.5pt}
+  header,.layout,#mapView,.fnav,#xqPop,.fbt,.fhint{display:none!important}
+  body[data-view="focus"] #focusView{display:block!important;height:auto!important;overflow:visible!important}
+  .fwrap{display:block;max-width:none;padding:0}
+  .fbody{padding:0}
+  .fhead h2{font-size:22pt}
+  .fs.top,.fg{margin-top:14pt}
+  .fs{padding-top:10pt}
+  .fs h3,.fg>h3{font-size:15pt;break-after:avoid}
+  .fs h4{font-size:12.5pt;break-after:avoid}
+  .flead,.fnote{max-width:none}
+  /* 表格一律回到表格（覆蓋手機卡片樣式） */
+  .ft:not(.mx){display:table!important;width:100%}
+  .ft:not(.mx) thead{display:table-header-group!important;position:static;width:auto;height:auto;overflow:visible;clip:auto}
+  .ft:not(.mx) tbody{display:table-row-group!important}
+  .ft:not(.mx) tr{display:table-row!important;padding:0;break-inside:avoid}
+  .ft:not(.mx) td,.ft:not(.mx) th{display:table-cell!important;position:static;padding:4pt 6pt 4pt 0!important;border-bottom:1px solid var(--line)!important;font:inherit;font-size:9pt;line-height:1.5;min-width:0}
+  .ft:not(.mx) th{font-weight:700;font-size:8.5pt;border-bottom:1.5px solid #111!important}
+  .ft:not(.mx) td:first-child{font-weight:600;font-family:inherit;font-size:9pt}
+  .ft:not(.mx) td::before{display:none!important}
+  .ft:not(.mx) td.nil{display:table-cell!important}
+  .ft.mx{min-width:0;table-layout:fixed;font-size:9pt}
+  .ft.mx td:first-child,.ft.mx th:first-child{position:static}
+  .tblwrap{overflow:visible}
+  .tl,.fq,.ffig,.fc{break-inside:avoid}
+  .tl p,.tl ul{font-size:9.5pt}
+  .ffig{max-width:100%}
+  .ffig img{max-height:120mm;width:auto;max-width:100%}
+  /* 快問快答：全部展開 */
+  .fcg{grid-template-columns:repeat(2,1fr);gap:6pt}
+  .fc{min-height:0;padding:6pt 8pt;border:1px solid var(--line)}
+  .fc .fa{display:block!important}
+  .fq1,.fa{font-size:9pt}
+  a.xl{text-decoration:none}
+}
+
+/* 手機：表格維持表格，左右滑動對照，第一欄固定 */
+@media (max-width:820px){
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-right:-16px;padding-right:16px}
+  .ft{min-width:max(560px,calc(var(--cols,4) * 138px));table-layout:auto}
+  .ft.mx{min-width:680px}
+  .ft th:first-child,.ft td:first-child{position:sticky;left:0;z-index:1;background:var(--bg);min-width:7.5em;max-width:9em;box-shadow:1px 0 0 var(--line)}
+  .ft td{font-size:14px}
+  .fhint{display:block!important}
+}
+@media print{
+  .ft,.ft.mx{min-width:0!important}
+  .ft th:first-child,.ft td:first-child{position:static!important;box-shadow:none!important;max-width:none}
+  .tblwrap{margin-right:0;padding-right:0}
+}

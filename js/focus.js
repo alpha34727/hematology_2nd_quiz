@@ -84,8 +84,8 @@ function fTable(key, T) {
   <h4>${fTitle(F_EN[key] || T.title, F_EN[key] ? T.title : "")}<span class="fsrc">${fEsc(T.src)}</span></h4>
   <p class="flead">${lead}</p>
   ${fig}
-  ${T.matrix ? '<p class="fhint">左右滑動可看全部欄位 →</p>' : ""}
-  <div class="tblwrap"><table class="ft${T.matrix ? " mx" : ""}"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="fhint">左右滑動可看全部欄位 →</p>
+  <div class="tblwrap"><table class="ft${T.matrix ? " mx" : ""}" style="--cols:${T.cols.length}"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>
   ${T.note ? `<p class="fnote">${fFmt(T.note, seen)}</p>` : ""}
 </section>`;
 }
@@ -113,6 +113,7 @@ function renderFocus() {
     <input id="fq" type="search" placeholder="搜尋重點頁…（如 TRAP、CD38）">
     <span class="fhc" id="fhc"></span>
     <label class="xqsw" title="開啟：考古題（105／109／110）考過的地方以綠色粗體標示"><input type="checkbox" id="xqSw" role="switch"><span class="sw" aria-hidden="true"></span><span class="xqt">考古題考過<small id="xqN"></small></span></label>
+    <button type="button" class="fprint" id="fPrint" title="開啟瀏覽器的列印視窗，目的地選「另存為 PDF」即可存成 PDF">列印／存成 PDF</button>
     <div class="fnl">${nav}</div>
   </nav>
   <div class="fbody">
@@ -170,6 +171,12 @@ function fWire(el) {
   let on = true; try { on = localStorage.getItem("hemeXq") !== "0"; } catch (e) {}
   const setXq = v => { el.classList.toggle("xq-on", v); sw.checked = v; try { localStorage.setItem("hemeXq", v ? "1" : "0"); } catch (e) {} };
   sw.addEventListener("change", () => setXq(sw.checked));
+  // 列印：用瀏覽器列印視窗（目的地選「另存為 PDF」）；列印時暫時把標題改成檔名
+  el.querySelector("#fPrint").addEventListener("click", () => {
+    const t0 = document.title; document.title = "Hematology II 考前重點";
+    const done = () => { document.title = t0; window.removeEventListener("afterprint", done); };
+    window.addEventListener("afterprint", done); window.print();
+  });
   setXq(on);
   el.addEventListener("click", e => {
     const a = e.target.closest("a.xl");
