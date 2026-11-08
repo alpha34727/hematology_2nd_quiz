@@ -382,3 +382,106 @@ cards: [
   ["ABO 不合能移植嗎？", "**可以**，洗掉紅血球與抗體"]
 ]
 };
+
+/* ===== 1012-2 Non-neoplastic leukocyte disorders：p48–p60 補充 ===== */
+Object.assign(FOCUS.tables, {
+
+stor: {
+  title: "脂質儲積症的酵素缺陷圖（1012-2 p48，老師標 ★必考）",
+  lead: "老師在講義 p48 這張圖上標了 **★ 必考**。圖中以 globoside 與 ganglioside 兩條分解路徑，標出每個酵素缺乏會造成哪一種儲積症；下表依圖整理，並併入 p49–p55 的 Gaucher、Niemann-Pick、Hemochromatosis。",
+  fig: { src: "assets/lyso-p48.jpg", cap: "1012-2 p48 原圖：Structure of globoside and ganglioside（紅框為老師標示，★＋必考）" },
+  src: "1012-2 p48–55（無課堂逐字稿）", cols: ["疾病", "缺陷酵素", "受質／堆積", "重點"],
+  rows: [
+    ["==[[gaucher|Gaucher disease]]==", "~~6,74|**β-glucosidase**（β-glucocerebrosidase）~~", "glucocerebroside → macrophage-monocyte 系統（BM、肝、脾、肺、腎、CNS）", "AR；1882 年 Gaucher 描述；**兩條路徑都出現**（圖中紫字）"],
+    ["Lactosyl ceramidosis", "**β-galactosidase**", "lactosylceramide", "兩條路徑都出現"],
+    ["[[lipidoses|Fabry disease]]", "**α-galactosidase**", "globoside（galactose 端）", "X-linked；血管、白內障、中風、腎衰竭"],
+    ["[[lipidoses|Sandhoff disease]]", "**Hexosaminidase A & B**", "globoside（N-acetylgalactosamine 端）", "CNS 破壞"],
+    ["[[lipidoses|Tay-Sachs disease]]", "**Hexosaminidase A**", "ganglioside（N-acetylgalactosamine 端）", "腦神經損傷、視網膜櫻桃紅斑"],
+    ["Generalized gangliosidosis", "**β-galactosidase**（ganglioside 末端）", "ganglioside（galactose）", "—"],
+    ["==[[np|Niemann-Pick disease]]==", "~~5,32,33,74|**(acid) sphingomyelinase**~~", "sphingomyelin → macrophage-monocyte 系統", "AR；~~5|**foamy cell**（20–80 μm 巨大 monocyte／macrophage）~~；PB monocyte 有脂質 vacuole；診斷＝偵測 WBC sphingomyelinase"],
+    ["[[hemochrom|Hemochromatosis]]（血鐵沉著症）", "毒性堆積型（非酵素缺乏）：**HFE 突變**或多次輸血", "鐵沉積於 monocyte／macrophage，並到胰島 β 細胞、性腺、皮膚", "anemia、infection、splenomegaly、hepatomegaly；**Prussian blue**／肝切片；serum iron↑、TIBC、ferritin"]
+  ],
+  note: "儲積機轉三類：酵素缺乏／毒性堆積／清除問題（總結 p9）。圖中 Gaucher 與 Lactosyl ceramidosis 各出現在兩條路徑，其餘各只在一條。"
+},
+
+gtype: {
+  title: "Gaucher disease 分型、診斷與治療（1012-2 p49–51）",
+  lead: "Gaucher：AR；肝脾腫大、骨痛、肺部問題、皮膚色素沉著；Gaucher cell 呈海綿（sponge-like）狀。",
+  src: "1012-2 p49–51", cols: ["型別", "部位", "併發症"],
+  rows: [
+    ["**Type 1**（chronic adult）", "macrophage-monocyte 系統", "骨髓浸潤、進行性 hepatosplenomegaly、骨骼併發症"],
+    ["**Type 2**（acute infantile）", "macrophage-monocyte 系統＋**CNS**", "骨髓浸潤、hepatosplenomegaly、骨骼併發症＋**neurodegeneration**"],
+    ["**Type 3**（sub-acute childhood）", "macrophage-monocyte 系統＋**CNS**", "進行性 neurodegeneration"]
+  ],
+  note: "**診斷**：①**PAS 染色（＋）**（PAS 偵測 glycogen、中性 mucopolysaccharide、mucoprotein、glycoprotein）②骨髓內 **20–80 μm 巨大 Gaucher cell** ③分離白血球證實 β-glucosidase 缺乏。**治療**：A. enzyme replacement（重組 β-glucosidase；**只適用 type 1，type 2、3 不適用**），可靜脈或口服（Zevesca）；B. **骨髓移植**（成功）。"
+},
+
+cnt: {
+  title: "白血球數量異常門檻（1012-2 p56）",
+  lead: "Adult absolute counts and common clinical thresholds。",
+  src: "1012-2 p56；總結 p5", cols: ["細胞", "增加", "減少／門檻"],
+  rows: [
+    ["Neutrophils", "Neutrophilia：高於實驗室參考上限", "Neutropenia：常用 **ANC <1.5×10⁹/L**；severe **<0.5×10⁹/L**"],
+    ["Eosinophils", "Eosinophilia：**>0.5×10⁹/L**", "Eosinopenia：低於參考範圍"],
+    ["Basophils", "Basophilia：高於參考上限", "Basopenia：極低時判讀價值有限"],
+    ["Monocytes", "Monocytosis：高於參考上限", "Monocytopenia：常用 **<0.2×10⁹/L**"],
+    ["Lymphocytes", "Lymphocytosis：高於年齡參考上限", "Lymphocytopenia：常用 **<1.0×10⁹/L**"]
+  ],
+  note: "ANC（absolute neutrophil count）＝每單位血液中 segmented 與 band neutrophil 的絕對數。"
+},
+
+lcyt: {
+  title: "Infection-associated lymphocytosis（1012-2 p57）",
+  lead: "感染造成的淋巴球增多，血片型態不同。",
+  src: "1012-2 p57", cols: ["情境", "典型血片表現"],
+  rows: [
+    ["[[pertussis|Pertussis]]（百日咳）", "以**小而成熟**的 lymphocyte 為主；可見 nuclear clefting"],
+    ["EBV 或 CMV 感染", "~~34|**Reactive lymphocyte**：大小、核形、細胞質嗜鹼性不一~~"],
+    ["其他病毒感染", "可有 lymphocytosis；型態依感染與病程而異"]
+  ],
+  note: "考古題 Q34（105）：「何者會有 reactive lymphocytes 出現」答案為以上皆是。Pertussis（小而成熟）與 EBV（大型 reactive）形態要能對比。"
+},
+
+im: {
+  title: "Infectious mononucleosis（1012-2 p58）",
+  lead: "[[im|Infectious mononucleosis（IM）]]重點整理。",
+  src: "1012-2 p58", cols: ["面向", "重點"],
+  rows: [
+    ["主因", "最常為 **primary EBV infection**"],
+    ["臨床", "fever、pharyngitis、lymphadenopathy、fatigue；好發青少年與年輕成人"],
+    ["CBC／血片", "**Lymphocytosis＋reactive lymphocytes**；可有 neutropenia 或 thrombocytopenia"],
+    ["細胞機轉", "**EBV 感染 B cell**；血中 reactive lymphocyte 主要是**活化的 CD8⁺ T cell**"],
+    ["實驗室", "**EBV-specific serology**；heterophile test 有重要限制"],
+    ["病程", "通常自限；疲倦可在急性期後持續"]
+  ],
+  note: ""
+},
+
+lpen: {
+  title: "Lymphocytopenia：定義與原因（1012-2 p59）",
+  lead: "成人門檻 **ALC <1.0×10⁹/L**；兒童用年齡參考區間。",
+  src: "1012-2 p59", cols: ["類別", "代表原因"],
+  rows: [
+    ["藥物／治療", "glucocorticoid、cytotoxic chemotherapy、immunosuppressive therapy、radiation"],
+    ["感染／急重症", "**HIV**、其他病毒感染、嚴重全身疾病"],
+    ["全身性疾病", "autoimmune disease、undernutrition、protein-losing disorders"],
+    ["Inborn errors of immunity", "影響 T cell、B cell 或兩者發育的疾病"]
+  ],
+  note: ""
+},
+
+prim: {
+  title: "DiGeorge vs XLA：T／B 淋巴球缺陷（1012-2 p60）",
+  lead: "[[digeorge|22q11.2 deletion（DiGeorge）]]與 [[xla|X-linked agammaglobulinemia（XLA）]]對照。",
+  src: "1012-2 p60", cols: ["面向", "DiGeorge／22q11.2 deletion", "XLA"],
+  rows: [
+    ["主要缺陷", "**胸腺發育不全**（少數無胸腺）→ T cell 發育受損", "**BTK** 相關的 **B cell 成熟阻斷**"],
+    ["遺傳", "常伴 **22q11.2 deletion**", "**BTK** 致病變異，**X-linked**"],
+    ["免疫發現", "T cell 不同程度減少，嚴重度因人而異", "循環 **B cell 顯著減少**、**immunoglobulin 低**"],
+    ["臨床線索", "**先天性心臟病、hypocalcemia、顎部異常**；感染易感性不一", "抗體缺乏 → **反覆感染**"],
+    ["檢驗重點", "T-cell subsets 與功能評估", "B cell 計數、immunoglobulin 定量、分子確認"]
+  ],
+  note: "XLA 機轉：BTK 功能異常 → B cell 成熟阻斷 → 成熟 B cell 明顯減少 → immunoglobulin 低。"
+}
+
+});

@@ -45,7 +45,7 @@ function fFmt(s, seen) {
 /* 標題：英文為主、中文為輔 */
 const fTitle = (en, zh) => `<span class="ten">${fEsc(en)}</span>${zh ? `<span class="tzh">${fEsc(zh)}</span>` : ""}`;
 const F_GROUPS = [
-  { id: "g-non", en: "Non-neoplastic leukocyte disorders", t: "非腫瘤性白血球疾病", keys: ["neut", "morph"] },
+  { id: "g-non", en: "Non-neoplastic leukocyte disorders", t: "非腫瘤性白血球疾病", keys: ["neut", "morph", "stor", "gtype", "cnt", "lcyt", "im", "lpen", "prim"] },
   { id: "g-lab", en: "Leukocyte tests & special stains", t: "白血球檢測與鑑別", keys: ["stain", "leuk"] },
   { id: "g-acute", en: "Acute leukemia (ALL / AML)", t: "急性白血病", keys: ["ball", "alltx", "drugs", "aml", "amld", "amltx"] },
   { id: "g-mds", en: "Myelodysplastic neoplasms (MDS)", t: "骨髓增生異常腫瘤", keys: ["mds"] },
@@ -54,6 +54,7 @@ const F_GROUPS = [
 ];
 const F_EN = {
   neut: "Inherited disorders of leukocyte number & function", morph: "Congenital morphologic anomalies & storage diseases",
+  stor: "Lysosomal storage diseases: enzyme defects (p48)", gtype: "Gaucher disease: types, diagnosis, treatment", cnt: "Quantitative leukocyte thresholds", lcyt: "Infection-associated lymphocytosis", im: "Infectious mononucleosis", lpen: "Lymphocytopenia", prim: "DiGeorge vs XLA",
   stain: "Special stains (must-know)", leuk: "Leukemoid reaction vs CML (chronic phase)",
   alltx: "Acute leukemia treatment · CR · TLS", drugs: "Targeted & antibody therapies", ball: "ALL / LBL classification",
   aml: "AML with defining genetic abnormalities", amld: "AML defined by differentiation", amltx: "AML treatment selection",
@@ -135,9 +136,34 @@ function fWire(el) {
   // 考古題標註：tooltip＋開關（記在 localStorage，預設開）
   const exByN = {}; if (typeof EXAMS !== "undefined") EXAMS.forEach(q => { exByN[q.n] = q; });
   const xqs = el.querySelectorAll(".xq");
+  // 停留一下（或點一下）就顯示完整考古題：題幹、選項、答案、解析
+  const pop = document.createElement("div"); pop.id = "xqPop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; el.appendChild(pop);
+  let tShow = 0, tHide = 0, cur = null;
+  const hidePop = () => { clearTimeout(tShow); pop.hidden = true; cur = null; };
+  const showPop = x => {
+    const qs = x.dataset.q.split(",").map(n => exByN[+n]).filter(Boolean);
+    if (!qs.length || !el.classList.contains("xq-on")) return;
+    pop.innerHTML = `<div class="xph">考古題 ${qs.length} 題</div>` + qs.map(exQHTML).join("");
+    pop.hidden = false; pop.scrollTop = 0; cur = x;
+    const r = x.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight, vw = innerWidth, vh = innerHeight;
+    let left = Math.min(Math.max(12, r.left), vw - pw - 12);
+    let top = r.bottom + 8; if (top + ph > vh - 12) top = r.top - ph - 8 >= 12 ? r.top - ph - 8 : Math.max(12, vh - ph - 12);
+    pop.style.left = left + "px"; pop.style.top = top + "px";
+  };
   xqs.forEach(x => {
-    x.title = x.dataset.q.split(",").map(n => { const q = exByN[+n]; return q ? `考古題（${q.years.join("／")} 年）${q.stem.replace(/\s+/g, " ").slice(0, 60)}${q.stem.length > 60 ? "…" : ""}` : ""; }).filter(Boolean).join("\n");
+    x.tabIndex = 0; x.setAttribute("aria-label", "考古題標註，停留或點擊查看題目");
+    x.addEventListener("mouseenter", () => { clearTimeout(tHide); clearTimeout(tShow); tShow = setTimeout(() => showPop(x), 350); });
+    x.addEventListener("mouseleave", () => { clearTimeout(tShow); tHide = setTimeout(hidePop, 200); });
+    x.addEventListener("focus", () => showPop(x));
+    x.addEventListener("blur", () => { tHide = setTimeout(hidePop, 200); });
+    x.addEventListener("click", e => { if (e.target.closest("a.xl")) return; if (cur === x) hidePop(); else showPop(x); });
+    x.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cur === x ? hidePop() : showPop(x); } });
   });
+  pop.addEventListener("mouseenter", () => clearTimeout(tHide));
+  pop.addEventListener("mouseleave", () => { tHide = setTimeout(hidePop, 200); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hidePop(); });
+  el.addEventListener("scroll", hidePop, { passive: true });
+  document.addEventListener("click", e => { if (!e.target.closest(".xq") && !e.target.closest("#xqPop")) hidePop(); });
   const sw = el.querySelector("#xqSw"), qn = el.querySelector("#xqN");
   qn.textContent = `（${xqs.length} 處）`;
   let on = true; try { on = localStorage.getItem("hemeXq") !== "0"; } catch (e) {}
