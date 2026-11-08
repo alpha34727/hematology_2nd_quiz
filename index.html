@@ -18,7 +18,7 @@
     <button type="button" class="yb" data-y="105" aria-pressed="true">105</button><button type="button" class="yb" data-y="109" aria-pressed="true">109</button><button type="button" class="yb" data-y="110" aria-pressed="true">110</button>
     <button type="button" class="yb only" id="exOnly" aria-pressed="false">只看考過</button>
   </span>
-  <span class="seg"><button id="viewMap">心智圖</button><button id="viewList">清單</button></span>
+  <span class="seg"><button id="viewMap">心智圖</button><button id="viewList">清單</button><button id="viewFocus">考前重點</button></span>
   <button class="back" id="backBtn">← 返回樹狀圖</button>
   <button id="themeBtn" title="切換深淺色">◐</button>
 </header>
@@ -47,11 +47,14 @@
   <div class="mmhelp">拖曳平移・滾輪縮放・點分類展開/收合・點 <i>i</i> 或疾病看詳細內容</div>
   <aside id="drawer"><button class="close" id="drClose" title="關閉（Esc）">✕</button><div id="drBody"></div></aside>
 </div>
+<div id="focusView"></div>
 <script src="js/data.js"></script>
 <script src="js/exams.js"></script>
 <script src="js/exam.js"></script>
 <script src="js/app.js"></script>
 <script src="js/mindmap.js"></script>
+<script src="js/focus-data.js"></script>
+<script src="js/focus.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

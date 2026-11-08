@@ -1,16 +1,19 @@
 /* ===== 檢視切換 ===== */
 let VIEW=null; try{ VIEW=localStorage.getItem("hemeView"); }catch(e){}
-if(VIEW!=="map"&&VIEW!=="list") VIEW = innerWidth<700 ? "list" : "map";   // 手機預設用清單
+if(VIEW!=="map"&&VIEW!=="list"&&VIEW!=="focus") VIEW = innerWidth<700 ? "list" : "map";   // 手機預設用清單
 function setView(v){
   VIEW=v; document.body.dataset.view=v;
   document.getElementById("viewMap").classList.toggle("on",v==="map");
   document.getElementById("viewList").classList.toggle("on",v==="list");
+  document.getElementById("viewFocus").classList.toggle("on",v==="focus");
   try{ localStorage.setItem("hemeView",v);}catch(e){}
   if(v==="map"){ renderMap(); if(!mmReady){ mmReady=true; fit(); } }
+  if(v==="focus") renderFocus();
   route();
 }
 document.getElementById("viewMap").onclick=()=>setView("map");
 document.getElementById("viewList").onclick=()=>setView("list");
+document.getElementById("viewFocus").onclick=()=>setView("focus");
 const setHH=()=>document.documentElement.style.setProperty("--hh", document.querySelector("header").offsetHeight+"px");
 window.addEventListener("resize", setHH); setHH();
 
@@ -22,6 +25,7 @@ function go(id){
 function route(force, clear){
   let id = typeof force==="string" ? force : "";
   if(!id && !clear){ try{ id = decodeURIComponent(location.hash.slice(1)); }catch(e){} }
+  if(VIEW==="focus") return;
   if(VIEW==="map"){
     if(id && byId[id]) openDrawer(id); else if(drawer.classList.contains("open")) closeDrawer();
     return;
