@@ -46,6 +46,9 @@ function fFmt(s, seen) {
 /* 標題：英文為主、中文為輔 */
 const fTitle = (en, zh) => `<span class="ten">${fEsc(en)}</span>${zh ? `<span class="tzh">${fEsc(zh)}</span>` : ""}`;
 const F_GROUPS = [
+  { id: "g-gran", en: "WBC structure & function ① Granulocytes", t: "白血球構造與功能① 顆粒球（9/28）", keys: ["wmat", "wkin", "wreact", "wgran", "web", "wphago", "wanom"] },
+  { id: "g-mono", en: "WBC structure & function ② Monocytes & macrophages", t: "白血球構造與功能② 單核球／巨噬細胞（9/28）", keys: ["wmono", "wm12"] },
+  { id: "g-lym", en: "WBC structure & function ③ Lymphocytes & effector cells", t: "白血球構造與功能③ 淋巴球與效應細胞（9/28）", keys: ["wlym", "wlmk", "wbsub", "wtd", "wtc", "wth", "wnk"] },
   { id: "g-non", en: "Non-neoplastic leukocyte disorders", t: "非腫瘤性白血球疾病", keys: ["neut", "morph", "stor", "gtype", "cnt", "lcyt", "im", "lpen", "prim"] },
   { id: "g-lab", en: "Leukocyte tests & special stains", t: "白血球檢測與鑑別", keys: ["stain", "leuk"] },
   { id: "g-acute", en: "Acute leukemia (ALL / AML)", t: "急性白血病", keys: ["ball", "alltx", "drugs", "aml", "amld", "amltx"] },
@@ -54,6 +57,11 @@ const F_GROUPS = [
   { id: "g-other", en: "Mature lymphoid neoplasms & HSCT", t: "成熟淋巴腫瘤與造血幹細胞移植", keys: ["mature", "hsct"] }
 ];
 const F_EN = {
+  wmat: "Granulocyte maturation: myeloblast → segmented neutrophil", wkin: "Neutrophil kinetics & the response to infection", wreact: "Reactive neutrophil changes: toxic granulation, Döhle bodies, shifts",
+  wgran: "Granule contents: primary, secondary, eosinophil, basophil", web: "Neutrophil vs eosinophil vs basophil", wphago: "Phagocytosis & microbial killing", wanom: "Functional & morphologic anomalies of granulocytes",
+  wmono: "Monocyte / macrophage: morphology, function, disease", wm12: "Macrophage polarization: M1 vs M2",
+  wlym: "Lymphocytes: morphology, distribution, counts", wlmk: "Lymphocyte markers & development", wbsub: "B-cell subsets: B-2 vs B-1 vs marginal zone", wtd: "T-dependent vs T-independent antigens",
+  wtc: "T-cell costimulation & checkpoints", wth: "T helper subsets & CTL", wnk: "NK cells, NKT cells & ILCs",
   neut: "Inherited disorders of leukocyte number & function", morph: "Congenital morphologic anomalies & storage diseases",
   stor: "Lysosomal storage diseases: enzyme defects (p48)", gtype: "Gaucher disease: types, diagnosis, treatment", cnt: "Quantitative leukocyte thresholds", lcyt: "Infection-associated lymphocytosis", im: "Infectious mononucleosis", lpen: "Lymphocytopenia", prim: "DiGeorge vs XLA",
   stain: "Special stains (must-know)", leuk: "Leukemoid reaction vs CML (chronic phase)",
@@ -120,9 +128,9 @@ function renderFocus() {
   <div class="fbody">
     <div class="fhead">
       <h2>${fTitle("Exam focus", "考前重點")}</h2>
-      <p class="flead">整理自 <b>11/02 課程總結</b>（影片 46:19–58:44＋1102 8-Summary，含游標停留位置）與 10/19、10/26、11/02 逐字稿。依老師說明，<b>總結中提到或游標指到的項目全部視為會考</b>。
+      <p class="flead">整理自 <b>11/02 課程總結</b>（影片 46:19–58:44＋1102 8-Summary，含游標停留位置）與 9/28、10/19、10/26、11/02 逐字稿（9/28〈Structure and Functions of WBC〉另整理成「白血球構造與功能」三區，置於最前面）。依老師說明，<b>總結中提到或游標指到的項目全部視為會考</b>。
       <mark class="ex">黃底</mark>＝老師在投影片上標粗體或口頭強調；<a class="xl" data-go="">藍色底線</a>＝可跳到該疾病完整頁面；<span class="xq-demo">綠色粗體</span>＝歷屆考古題（105／109／110）考過的地方（目錄上方的「考古題考過」開關可開關；滑鼠停在上面看題目）。</p>
-      <p class="fnote">限制：<b>11/02 第一節（成熟淋巴／漿細胞腫瘤）</b>與 10/12 兩份講課沒有逐字稿，相關內容依投影片整理；游標位置由影片逐 2 秒取樣判讀，僅供參考。</p>
+      <p class="fnote">限制：<b>11/02 第一節（成熟淋巴／漿細胞腫瘤）</b>與 10/12 兩份講課沒有逐字稿，相關內容依投影片整理；9/28 逐字稿為語音辨識，英文術語已對照講義修正；游標位置由影片逐 2 秒取樣判讀，僅供參考。</p>
     </div>
     <section class="fs top" id="f-scope"><h3>${fTitle("What is (and isn't) on the exam", "考／不考一覽")}</h3>${scope}</section>
     <section class="fs top" id="f-quotes"><h3>${fTitle("The teacher's own words", "老師原話（含時間）")}</h3>${quotes}</section>
