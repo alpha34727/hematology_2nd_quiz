@@ -110,6 +110,7 @@ function renderFocus() {
   const cards = D.cards.map((c, i) => { const s = new Set(); return `<button type="button" class="fc" data-i="${i}" aria-expanded="false"><span class="fq1">${fFmt(c[0], s)}</span><span class="fa">${fFmt(c[1], s)}</span></button>`; }).join("");
   el.innerHTML = `<div class="fwrap">
   <nav class="fnav" aria-label="考前重點目錄">
+    <button type="button" class="fncol" id="fnCol" aria-expanded="true" title="收合／展開側邊欄"><span class="fnc-i">«</span><span class="fnc-t">收合</span></button>
     <input id="fq" type="search" placeholder="搜尋重點頁…（如 TRAP、CD38）">
     <span class="fhc" id="fhc"></span>
     <label class="xqsw" title="開啟：考古題（105／109／110）考過的地方以綠色粗體標示"><input type="checkbox" id="xqSw" role="switch"><span class="sw" aria-hidden="true"></span><span class="xqt">考古題考過<small id="xqN"></small></span></label>
@@ -135,6 +136,11 @@ function renderFocus() {
 }
 function fWire(el) {
   const nav = el.querySelector(".fnl");
+  // 側邊欄收合／展開（桌機；記在 localStorage）
+  const wrap = el.querySelector(".fwrap"), cbtn = el.querySelector("#fnCol");
+  const setNav = c => { wrap.classList.toggle("nc", c); cbtn.setAttribute("aria-expanded", !c); cbtn.querySelector(".fnc-i").textContent = c ? "»" : "«"; try { localStorage.setItem("hemeFnav", c ? "1" : "0"); } catch (e) {} };
+  cbtn.addEventListener("click", () => setNav(!wrap.classList.contains("nc")));
+  try { if (localStorage.getItem("hemeFnav") === "1") setNav(true); } catch (e) {}
   // 考古題標註：tooltip＋開關（記在 localStorage，預設開）
   const exByN = {}; if (typeof EXAMS !== "undefined") EXAMS.forEach(q => { exByN[q.n] = q; });
   const xqs = el.querySelectorAll(".xq");

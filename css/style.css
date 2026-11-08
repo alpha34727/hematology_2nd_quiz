@@ -466,3 +466,14 @@ small.sub{display:block;font:400 12.5px/1.4 var(--sans);color:var(--muted);margi
 body:not([data-view="focus"]) #fDrawer{display:none}
 @media print{#fDrawer{display:none!important}}
 @media (max-width:820px){ #fDrawer{padding:16px 16px 48px;top:0;z-index:30} #fDrawer .close{min-width:44px} }
+
+/* ---------- 考前重點：側邊欄收合 ---------- */
+.fncol{display:flex;align-items:center;gap:6px;margin:0 0 12px;padding:2px 10px;font-size:13px;color:var(--muted)}
+.fncol .fnc-i{font-size:15px;line-height:1}
+.fwrap{transition:grid-template-columns .2s ease}
+.fwrap.nc{grid-template-columns:44px minmax(0,1fr);gap:0 32px}
+.fwrap.nc .fnav>*:not(.fncol){display:none}
+.fwrap.nc .fncol{padding:2px 0;width:36px;justify-content:center}
+.fwrap.nc .fncol .fnc-t{display:none}
+@media (max-width:820px){ .fncol{display:none} }
+@media print{ .fncol{display:none!important} }
