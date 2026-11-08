@@ -40,6 +40,7 @@ function fFmt(s, seen) {
     .replace(/~~([\d,]+)\|(.+?)~~/g, '<span class="xq" data-q="$1">$2</span>')
     .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
     .replace(/==(.+?)==/g, '<mark class="ex">$1</mark>')
+    .replace(/\{\{(.+?)\}\}/g, '<small class="sub">$1</small>')
     .replace(/\n/g, "<br>"), seen);
 }
 /* 標題：英文為主、中文為輔 */

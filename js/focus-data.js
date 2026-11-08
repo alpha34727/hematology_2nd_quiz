@@ -104,15 +104,15 @@ stain: {
   lead: "重點是「陽性細胞＝什麼 lineage、拿來鑑別什麼」。老師：鑑別診斷不會只靠單一方法，要整合。",
   src: "3 15:00–46:00；總 50:45–51:35", cols: ["染色", "標的", "陽性細胞", "用途／鑑別", "老師提示"],
   rows: [
-    ["**MPO**", "初級顆粒酵素（需有活性）", "Myeloid（granulocyte）；lymphoid 陰性", "**Myeloid vs Lymphoid（AML vs ALL）**", "總結中游標停最久；也可用抗體染（MPO、TdT）"],
-    ["**SBB**", "脂質（不需酵素活性）", "Myeloid（與 MPO 相同 pattern）", "與 MPO 同用途", "醫院通常 **MPO／SBB 擇一**"],
-    ["CAE", "specific esterase", "Neutrophil 系", "granulocytic 分化（M1/M2/M3）", "—"],
-    ["**NSE**", "non-specific esterase", "**Monocyte：瀰漫**；**T cell：細點狀**", "monocytic（M4/M5）；~~17|**加 NaF 被抑制 → M5**~~（M1 不被抑制）", "用來鑑別 M5"],
-    ["**PAS**", "醣類（glycogen）", "Neutrophil（瀰漫）；lymphocyte 弱/點狀；巨核/血小板 ＋；紅血球前驅正常**陰性**", "**M6（erythroid 異常 PAS⁺）**；Gaucher/脂質儲積細胞", "早期指標，現多用 CD marker"],
-    ["**ACP／TRAP**", "acid phosphatase（低 pH）", "加 tartrate 後**仍陽性＝HCL**", "~~21|**確認 HCL**~~（總結：怎麼區分 HCL）", "TRAP test"],
-    ["**LAP**", "鹼性磷酸酶（高 pH）", "成熟 neutrophil", "~~7,25,75|**CML（低）vs leukemoid reaction（高）**~~", "數 100 顆打分，各 0–4；>130（各院不同）偏反應性"],
-    ["**TdT**", "核內酵素", "未成熟 lymphocyte（B／T lymphoblast）", "~~40,46|**ALL／LBL**~~", "抗體染色；核內抗原須固定＋通透"],
-    ["Prussian blue", "鐵", "鐵顆粒", "**ring sideroblast（MDS）**", "每細胞 >5 顆、環繞核 >1/3 周長（5a 4:04）"]
+    ["**MPO**\n{{Myeloperoxidase}}", "初級顆粒酵素（需有活性）", "Myeloid（granulocyte）；lymphoid 陰性", "**Myeloid vs Lymphoid（AML vs ALL）**", "總結中游標停最久；也可用抗體染（MPO、TdT）"],
+    ["**SBB**\n{{Sudan Black B}}", "脂質（不需酵素活性）", "Myeloid（與 MPO 相同 pattern）", "與 MPO 同用途", "醫院通常 **MPO／SBB 擇一**"],
+    ["CAE\n{{Chloroacetate esterase（Naphthol AS-D chloroacetate esterase）}}", "specific esterase", "Neutrophil 系", "granulocytic 分化（M1/M2/M3）", "—"],
+    ["**NSE**\n{{Non-specific esterase（α-naphthyl acetate／butyrate esterase）}}", "non-specific esterase", "**Monocyte：瀰漫**；**T cell：細點狀**", "monocytic（M4/M5）；~~17|**加 NaF 被抑制 → M5**~~（M1 不被抑制）", "用來鑑別 M5"],
+    ["**PAS**\n{{Periodic acid–Schiff}}", "醣類（glycogen）", "Neutrophil（瀰漫）；lymphocyte 弱/點狀；巨核/血小板 ＋；紅血球前驅正常**陰性**", "**M6（erythroid 異常 PAS⁺）**；Gaucher/脂質儲積細胞", "早期指標，現多用 CD marker"],
+    ["**ACP／TRAP**\n{{Acid phosphatase／Tartrate-resistant acid phosphatase}}", "acid phosphatase（低 pH）", "加 tartrate 後**仍陽性＝HCL**", "~~21|**確認 HCL**~~（總結：怎麼區分 HCL）", "TRAP test"],
+    ["**LAP**\n{{Leukocyte alkaline phosphatase（又稱 NAP）}}", "鹼性磷酸酶（高 pH）", "成熟 neutrophil", "~~7,25,75|**CML（低）vs leukemoid reaction（高）**~~", "數 100 顆打分，各 0–4；>130（各院不同）偏反應性"],
+    ["**TdT**\n{{Terminal deoxynucleotidyl transferase}}", "核內酵素", "未成熟 lymphocyte（B／T lymphoblast）", "~~40,46|**ALL／LBL**~~", "抗體染色；核內抗原須固定＋通透"],
+    ["Prussian blue\n{{Perls' Prussian blue（iron stain）}}", "鐵", "鐵顆粒", "**ring sideroblast（MDS）**", "每細胞 >5 顆、環繞核 >1/3 周長（5a 4:04）"]
   ],
   note: "抗體染色 vs 化學染色：抗體專一性好但貴；化學染色便宜、做在 smear。Chromogenic（棕色）便宜、保存久、臨床常用；fluorescence 快但會褪色、設備貴。染色結果受~~73|檢體製備與固定、染劑濃度／作用時間／溫度、pH~~ 影響（考古題：以上皆是）。臨床染色一定要有 **positive control＋negative control**（3 28:07）。"
 },
