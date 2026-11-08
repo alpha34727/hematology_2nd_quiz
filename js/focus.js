@@ -182,8 +182,7 @@ function fWire(el) {
     const a = e.target.closest("a.xl");
     if (a) {
       e.preventDefault(); const id = a.dataset.go;
-      if (id && typeof byId !== "undefined" && byId[id]) { setView("list"); go(id); }
-      else if (!id) { setView("list"); }
+      if (id && typeof byId !== "undefined" && byId[id]) openFDrawer(id);
       return;
     }
     const nv = e.target.closest(".fnl a");
@@ -230,4 +229,33 @@ function fWire(el) {
 function fScrollTo(el, t) {
   const y = t.getBoundingClientRect().top - el.getBoundingClientRect().top + el.scrollTop - 16;
   el.scrollTo({ top: y, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}
+
+/* ===== 側邊抽屜：在考前重點頁點疾病連結時，不離開頁面，從右側滑出該疾病的完整內容 ===== */
+let fDrawer = null;
+function fDrawerEl() {
+  if (fDrawer) return fDrawer;
+  fDrawer = document.createElement("aside");
+  fDrawer.id = "fDrawer"; fDrawer.setAttribute("aria-label", "疾病詳細內容");
+  fDrawer.innerHTML = '<button type="button" class="close" id="fdClose" title="關閉（Esc）">✕</button><div id="fdBody"></div>';
+  document.body.appendChild(fDrawer);
+  fDrawer.querySelector("#fdClose").onclick = closeFDrawer;
+  fDrawer.addEventListener("click", e => {          // 抽屜內的麵包屑／子項目：留在抽屜裡切換
+    const g = e.target.closest("[data-go]"); if (g && g.dataset.go) openFDrawer(g.dataset.go);
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && fDrawer.classList.contains("open")) closeFDrawer(); });
+  document.addEventListener("click", e => {          // 點抽屜外面（但不是疾病連結）就關閉
+    if (fDrawer.classList.contains("open") && !e.target.closest("#fDrawer") && !e.target.closest("a.xl")) closeFDrawer();
+  });
+  return fDrawer;
+}
+function openFDrawer(id) {
+  if (byId[id] && byId[id].link) id = byId[id].link;
+  const d = fDrawerEl(), body = d.querySelector("#fdBody");
+  render(id, body); d.scrollTop = 0; d.classList.add("open");
+  document.body.classList.add("fd-open");
+}
+function closeFDrawer() {
+  if (!fDrawer) return;
+  fDrawer.classList.remove("open"); document.body.classList.remove("fd-open");
 }

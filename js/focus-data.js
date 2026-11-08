@@ -143,7 +143,7 @@ alltx: {
     ["CNS 預防／治療", "鞘內注射＋可穿 CNS 的全身化療，必要時放療；**CNS involvement＝預後較差**"],
     ["**CR 定義**", "**骨髓 blast <5%**；周邊血 neutrophil／血小板恢復；無髓外病灶；MRD 低——越快達 CR 預後越好"],
     ["**MRD**", "偵測低於形態學敏感度的殘存白血病細胞；**用來判斷藥有沒有效**與預後（分子/流式）"],
-    ["**TLS**", "快速細胞崩解 → ~~67|**↑尿酸、↑K⁺、↑磷、↓Ca²⁺**~~ → 急性腎損傷、心律不整、癲癇；預防：提早給藥（allopurinol／rasburicase）＋水分補充；急性病人尤其要注意"],
+    ["**TLS**\n{{Tumor lysis syndrome}}", "快速細胞崩解 → ~~67|**↑尿酸、↑K⁺、↑磷、↓Ca²⁺**~~ → 急性腎損傷、心律不整、癲癇；預防：提早給藥（allopurinol／rasburicase）＋水分補充；急性病人尤其要注意"],
     ["支持性治療", "貧血給 RBC、血小板低給血小板、感染給抗生素；嚴重者住無菌病房"],
     ["Ph+ 病人", "仍需**化療＋TKI 合併**（blast 多、要快速殺細胞）"]
   ],
@@ -172,16 +172,16 @@ drugs: {
 ball: {
   title: "ALL／LBL 分類（總結 p14）",
   lead: "B-ALL 六個亞型 + T-ALL + MPAL。",
-  src: "總 51:37；4a 28:00–49:00", cols: ["亞型", "基因／機轉", "預後", "備註"],
+  src: "總 51:37；4a 28:00–49:00", cols: ["亞型", "類別", "基因／機轉", "預後", "備註"],
   rows: [
-    ["[[etv6|ETV6::RUNX1]]\nt(12;21)", "招募含 **HDAC** 的 repressor 複合體 → 基因被 turn off", "**好**（兒童）", "舊名 TEL-AML1；國考考過「12;21 預後好」"],
-    ["[[tcf3|TCF3::PBX1]]\nt(1;19)", "轉錄因子異常，影響下游基因", "過去差，現代治療改善", "—"],
-    ["[[phall|BCR::ABL1]]\nt(9;22) **Ph+**", "BCR::ABL1 → ~~45,77|**constitutively active tyrosine kinase**（kinase 融合，並非 transcriptional regulator 突變）~~；ALL 常見 p190", "過去差，**TKI 後變好**", "與 CML 同易位同治療；可表現 CD33；**T315I**"],
-    ["[[iamp21|iAMP21]]", "21 號染色體 **RUNX1 區域 amplification**；FISH 單細胞 RUNX1 **≥5** 個訊號（對照 ETV6＝2）", "**差**（染色體不穩、易復發）", "不是整條 21 trisomy（那是 Down）"],
-    ["[[ploidy|Ploidy 異常]]", "染色體數目：過多（**51–61**）／過少", "hyperdiploid 一般較好、hypodiploid 較差（老師未細說）", "—"],
-    ["[[kmt2aall|KMT2A rearr.]]\n11q23.3", "易斷、與 4、19 等形成融合蛋白", "**差**（高風險）", "多見 **<1 歲嬰兒**；ALL／AML 都有，用 MPO/SBB 區分"],
-    ["[[tall|T-ALL/LBL]]", "~~46|CD7、CD4、CD8…~~；~~42,46|**NOTCH1** 持續活化（ligand-independent）~~", "依 MRD、反應", "有無 NOTCH1 突變，治療不同"],
-    ["[[mpal|MPAL]]", "混合表型（B/M、T/M…）", "**差**（「只要混合就不好」）", "罕見"]
+    ["[[etv6|ETV6::RUNX1]]\nt(12;21)", "**B-ALL**", "招募含 **HDAC** 的 repressor 複合體 → 基因被 turn off", "**好**（兒童）", "舊名 TEL-AML1；國考考過「12;21 預後好」"],
+    ["[[tcf3|TCF3::PBX1]]\nt(1;19)", "**B-ALL**", "轉錄因子異常，影響下游基因", "過去差，現代治療改善", "—"],
+    ["[[phall|BCR::ABL1]]\nt(9;22) **Ph+**", "**B-ALL**", "BCR::ABL1 → ~~45,77|**constitutively active tyrosine kinase**（kinase 融合，並非 transcriptional regulator 突變）~~；ALL 常見 p190", "過去差，**TKI 後變好**", "與 CML 同易位同治療；可表現 CD33；**T315I**"],
+    ["[[iamp21|iAMP21]]", "**B-ALL**", "21 號染色體 **RUNX1 區域 amplification**；FISH 單細胞 RUNX1 **≥5** 個訊號（對照 ETV6＝2）", "**差**（染色體不穩、易復發）", "不是整條 21 trisomy（那是 Down）"],
+    ["[[ploidy|Ploidy 異常]]", "**B-ALL**", "染色體數目：過多（**51–61**）／過少", "hyperdiploid 一般較好、hypodiploid 較差（老師未細說）", "—"],
+    ["[[kmt2aall|KMT2A rearr.]]\n11q23.3", "**B-ALL**", "易斷、與 4、19 等形成融合蛋白", "**差**（高風險）", "多見 **<1 歲嬰兒**；ALL／AML 都有，用 MPO/SBB 區分"],
+    ["[[tall|T-ALL/LBL]]", "**T-ALL**", "~~46|CD7、CD4、CD8…~~；~~42,46|**NOTCH1** 持續活化（ligand-independent）~~", "依 MRD、反應", "有無 NOTCH1 突變，治療不同"],
+    ["[[mpal|MPAL]]", "**MPAL**", "混合表型（B/M、T/M…）", "**差**（「只要混合就不好」）", "罕見"]
   ],
   note: "預後總則：偏離好發年齡（3–7 歲）的極端年齡差；WBC 高差；CNS 侵犯差；快速達 CR、MRD 持續陰性好。~~40|ALL 好發 3–7 歲~~與 ~40 歲；症狀：貧血、neutropenia 感染、血小板低出血、淋巴結腫大，**感染是第一死因**。"
 },
